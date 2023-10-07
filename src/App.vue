@@ -3,8 +3,8 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <h1>Organization Chart</h1>
+  <header class="flex flex-col justify-around items-start gap-2">
+    <h1 class="text-4xl">Organization Chart</h1>
     <nav>
       <RouterLink to="/">Home</RouterLink>
     </nav>
