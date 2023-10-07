@@ -3,11 +3,12 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header class="flex flex-col justify-around items-start gap-2">
+  <header class="flex flex-col justify-around items-start gap-2 py-4">
     <h1 class="text-4xl">Organization Chart</h1>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-    </nav>
+    <nav class="flex justify-around items-center gap-2 text-xl">
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/demo">Demo</RouterLink>
+      </nav>
   </header>
 
   <RouterView />
