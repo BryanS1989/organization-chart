@@ -26,7 +26,7 @@ export default {
 </script>
 
 <template>
-    <section class="border border-blue-700 rounded-2xl mx-4 w-80 select-none shadow-lg">
+    <section class="border border-blue-700 rounded-2xl mx-4 w-80 select-none shadow-lg min-h-40">
         <header class="border-b px-4 py-2 bg-blue-700 rounded-t-2xl text-neutral-100">
             <h3 class="text-xl font-bold whitespace-nowrap">{{ employeeInfo.name }}</h3>
             <p class="text-xs text-thin text-left" v-show="employeeInfo.position">{{ employeeInfo.position }}</p>
