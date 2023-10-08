@@ -32,14 +32,19 @@ export default {
                                         name: "Luis Fernandez",
                                         position: "Senior Developer",
                                         department: "Producto",
+                                        email: "l.fernandez@email.com",
                                     },
                                     {
                                         name: "Ana Sanchez",
-                                        position: "Junior Developer"
+                                        position: "Junior Developer",
+                                        department: "Producto",
+                                        email: "a.sanchez@email.com",
                                     },
                                     {
                                         name: "Michael Johnson",
-                                        position: "Junior Developer"
+                                        position: "Junior Developer",
+                                        department: "Producto",
+                                        email: "m.johnson@email.com",
                                     }
                                 ]
                             }
@@ -48,6 +53,7 @@ export default {
                     {
                         name: "Jane Doe",
                         position: "COO",
+                        email: "j.doe@email.com",
                         employees: [
                             {
                                 name: "Maria Perez",
@@ -56,21 +62,29 @@ export default {
                             },
                             {
                                 name: "David Rodriguez",
-                                position: "Hiring Manager"
+                                position: "Hiring Manager",
+                                department: "Recursos Humanos",
+                                email: "d.rodriguez@email.com",
                             }
                         ]
                     },
                     {
                         name: "Alice Brown",
                         position: "CFO",
+                        department: "Finanzas",
+                        email: "a.brown@email.com",
                         employees: [
                             {
                                 name: "Robert Wilson",
-                                position: "Financial Analyst"
+                                position: "Financial Analyst",
+                                department: "Finanzas",
+                                email: "r.wilson@email.com",
                             },
                             {
                                 name: "Emily Davis",
-                                position: "Accountant"
+                                position: "Accountant",
+                                department: "Finanzas",
+                                email: "e.davis@email.com",
                             }
                         ]
                     },
