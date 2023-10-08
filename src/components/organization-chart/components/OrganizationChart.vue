@@ -70,14 +70,17 @@ export default {
 
 <template>
     <article 
-        class="relative border border-neutral-300 rounded-xl overflow-hidden w-full h-full p-6 flex justify-around items-center bg-neutral-50 shadow-inner" 
+        :class="`relative border border-neutral-300 rounded-xl overflow-hidden w-full h-full p-6 flex justify-around grow items-center bg-neutral-50 shadow-inner ${!clicked ? 'cursor-grab' : 'cursor-grabbing'}`" 
         @mousedown="startDrag" 
+        @touchstart="startDrag" 
         @mousemove="dragChart"
+        @touchmove="dragChart"
         @mouseup="endDrag"
+        @touchend="endDrag"
     >
         <section 
             ref="org-chart" 
-            class="absolute w-full h-full flex-1 flex justify-around items-center cursor-grab" 
+            :class="`absolute w-full h-full flex justify-around items-center`" 
             :style="positionAbsolute"
         >
             <OrganizationTree :levelInfo="chartInfo"/>
