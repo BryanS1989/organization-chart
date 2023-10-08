@@ -136,7 +136,7 @@ export default {
 </script>
 
 <template>
-    <main class="flex justify-center items-center flex-grow p-10 bg-neutral-100">
+    <main class="flex justify-center items-center flex-grow p-3 bg-neutral-100">
         <OrganizationChart :chartInfo="organization" />
     </main>
 </template>

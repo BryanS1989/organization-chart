@@ -114,7 +114,7 @@ export default {
     >
         <section 
             ref="org-chart" 
-            :class="`absolute w-full h-full flex justify-around items-center`" 
+            :class="`absolute w-full h-full flex justify-around items-center p-4`" 
             :style="chartStyle"
         >
             <OrganizationTree :levelInfo="chartInfo"/>
@@ -123,7 +123,7 @@ export default {
         <div class="absolute top-4 right-4">
             <button 
                 type="button" 
-                class="text-white bg-blue-700 hover:bg-blue-900 font-medium rounded-2xl text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+                class="text-neutral-100 bg-blue-700 hover:bg-blue-900 font-medium rounded-2xl text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
                 @click="centerChart"
             >
                 CENTER

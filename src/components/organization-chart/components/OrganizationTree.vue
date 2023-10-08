@@ -78,7 +78,7 @@ export default {
 </script>
 
 <template>
-    <section class="subtree w-fit flex flex-col justify-around items-center">
+    <section class="subtree w-full h-full flex flex-col justify-start items-center">
         <div v-if="level !== 0" class="connectors flex w-full">
             <div :class="`connection-upwards-left w-1/2 h-8 my-auto ${ connectionUpwardsLeftClasss }`"/>
             <div :class="`connection-upwards-center h-8 ${ connectionUpwardsCenterClasss }`"/>
