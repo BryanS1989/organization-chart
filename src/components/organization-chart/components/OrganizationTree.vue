@@ -26,7 +26,8 @@ export default {
     },
     data() {
         return {
-            localLevel: 0
+            localLevel: 0,
+            collapse: false
         }
     },
     computed: {
@@ -44,29 +45,29 @@ export default {
         },
         connectionUpwardsLeftClasss() {
             if (this.firstChild) {
-                return 'w-full border-t-0';
+                return 'w-full';
             } else if (this.lastChild) {
-                return 'w-full border-t';
+                return 'w-full border-t border-neutral-800';
             } else {
-                return 'w-1/2 border-t';
+                return 'w-1/2 border-t border-neutral-800';
             }
         },
         connectionUpwardsCenterClasss () {
             if ( this.firstChild ) {
-                return 'w-10 border-l border-t rounded-tl-xl' ;
+                return 'w-10 border-l border-t border-neutral-800 rounded-tl-xl' ;
             } else if ( this.lastChild ) {
-                return 'w-10 border-r border-t rounded-tr-xl';
+                return 'w-10 border-r border-t border-neutral-800 rounded-tr-xl';
             } else {
-                return 'w-0 border';
+                return 'w-0 border-l border-neutral-800';
             }
         },
         connectionUpwardsRightClasss() {
             if (this.firstChild) {
-                return 'w-full border-t ';
+                return 'w-full border-t border-neutral-800';
             } else if (this.lastChild) {
-                return 'w-full  ';
+                return 'w-full';
             } else {
-                return 'w-1/2 border-t';
+                return 'w-1/2 border-t border-neutral-800';
             }
         },
     },
@@ -84,22 +85,35 @@ export default {
             <div :class="`connection-upwards-right w-1/2 h-8 my-auto ${ connectionUpwardsRightClasss } `"/>
         </div>
 
-        <OrganizationNode :employeeInfo="levelInfo" :level="level"  :index="index"/>
+        <OrganizationNode :employeeInfo="levelInfo" :level="level"  :index="index" @click="collapse = !collapse" class="cursor-pointer"/>
 
-        <div v-if="subordinates.length" class="connection-downwards w-0 h-8 border" />
+        <Transition name="fade">
+            <div v-if="!collapse" class="w-full flex flex-col justify-around items-center">
+                <div v-if="subordinates.length" class="connection-downwards w-0 h-8 border-l border-neutral-800" />
 
-        <section class="tree w-full flex justify-around items-start">
-                <OrganizationTree 
-                    v-for="(subTree, subTreeIndex) in subordinates" 
-                    :key="subTreeIndex" 
-                    :levelInfo="subTree" 
-                    :level="nextLevel" 
-                    :index="subTreeIndex"
-                    :last="subTreeIndex === (subordinates.length - 1)"
-                />
-        </section>
+                <section class="tree w-full flex justify-around items-start">
+                        <OrganizationTree 
+                            v-for="(subTree, subTreeIndex) in subordinates" 
+                            :key="subTreeIndex" 
+                            :levelInfo="subTree" 
+                            :level="nextLevel" 
+                            :index="subTreeIndex"
+                            :last="subTreeIndex === (subordinates.length - 1)"
+                        />
+                </section>
+            </div>
+        </Transition>
     </section>
 </template>
 
 <style scoped>
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: all 0.3s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+        opacity: 0;
+    }
 </style>
