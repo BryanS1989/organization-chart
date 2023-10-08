@@ -136,10 +136,7 @@ export default {
 </script>
 
 <template>
-    <main class="flex flex-col justify-start items-start gap-2">
-        <h2 class="text-2xl">My Company Organization Chart</h2>
-        <article class="rounded w-full">
-            <OrganizationChart :chartInfo="organization" />
-        </article>
+    <main class="flex justify-center items-center flex-grow p-10 bg-neutral-100">
+        <OrganizationChart :chartInfo="organization" />
     </main>
 </template>
