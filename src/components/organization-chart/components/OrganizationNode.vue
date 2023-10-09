@@ -12,9 +12,7 @@ export default {
     },
     data() {
         return {
-            localEmployee:{
-                name: 'Jhon Doe'
-            }
+            expanded: true
         }
     },
     computed: {
@@ -27,6 +25,7 @@ export default {
     },
     methods: {
         emitExpand(){
+            this.expanded = !this.expanded;
             this.$emit('expand');
         }
     }
@@ -51,10 +50,11 @@ export default {
             @click="emitExpand"
         >
             <div v-if="subordinates" 
-                class="absolute z-10 bg-green-400 border rounded-full w-10 h-10 flex justify-center items-center" 
+                class="absolute z-10 bg-neutral-100 border border-blue-700 rounded-full w-8 h-8 flex justify-center items-center text-blue-700" 
             >
-                <span class="font-bold">v</span>
-            </div>
+                    <font-awesome-icon v-if="!expanded" :icon="['fas', 'chevron-down']" />
+                    <font-awesome-icon v-else :icon="['fas', 'chevron-up']" />
+                </div>
         </footer>
     </section>
 </template>
