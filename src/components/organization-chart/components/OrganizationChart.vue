@@ -117,7 +117,11 @@ export default {
             :class="`absolute w-max h-max flex justify-around items-center p-4`" 
             :style="chartStyle"
         >
-            <OrganizationTree :levelInfo="chartInfo"/>
+            <OrganizationTree 
+                :levelInfo="chartInfo"
+                :index="0"
+                :number-of-children="chartInfo.employees.length"
+            />
         </section>
 
         <div class="absolute top-4 right-4">
