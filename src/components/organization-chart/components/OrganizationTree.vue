@@ -48,27 +48,28 @@ export default {
                 return 'w-full';
             } else if (this.lastChild) {
                 return 'w-full border-t border-neutral-800';
-            } else {
-                return 'w-1/2 border-t border-neutral-800';
             }
+            
+            return 'w-1/2 border-t border-neutral-800';
+
         },
         connectionUpwardsCenterClasss () {
             if ( this.firstChild ) {
                 return 'w-10 border-l border-t border-neutral-800 rounded-tl-xl' ;
             } else if ( this.lastChild ) {
                 return 'w-10 border-r border-t border-neutral-800 rounded-tr-xl';
-            } else {
-                return 'w-0 border-l border-neutral-800';
             }
+            
+            return 'w-0 border-l border-neutral-800';
         },
         connectionUpwardsRightClasss() {
             if (this.firstChild) {
                 return 'w-full border-t border-neutral-800';
             } else if (this.lastChild) {
                 return 'w-full';
-            } else {
-                return 'w-1/2 border-t border-neutral-800';
             }
+
+            return 'w-1/2 border-t border-neutral-800';
         },
     },
     created() {
