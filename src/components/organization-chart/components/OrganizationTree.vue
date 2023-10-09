@@ -40,11 +40,17 @@ export default {
         firstChild() {
             return this.index === 0;
         },
+        evenChild(){
+            return this.index % 2 === 0;
+        },
         lastChild() {
             return this.index === this.numberOfChildren - 1;
         },
-        childrenMode () {
-            return this.numberOfChildren < 5 ? 'x-mode' : 'y-mode';
+        parentColumnMode(){
+            return this.numberOfChildren >= 5;
+        },
+        columnMode () {
+            return this.subordinates.length >= 5;
         },
         connectionUpwardsLeftClass() {
             if (this.firstChild) {
@@ -52,9 +58,8 @@ export default {
             } else if (this.lastChild) {
                 return 'w-full border-t border-neutral-800';
             }
-            
-            return 'w-1/2 border-t border-neutral-800';
 
+            return 'w-1/2 border-t border-neutral-800';
         },
         connectionUpwardsCenterClass () {
             if ( this.firstChild ) {
@@ -82,33 +87,35 @@ export default {
 </script>
 
 <template>
-    <section class="subtree w-max h-max flex flex-col justify-between items-center">
-        <div class="flex flex-col w-full justify-between items-center">
-            <div v-if="level !== 0" class="flex w-full h-10">
+    <section :class="`flex-1 subtree flex flex-col justify-start items-center`" draggable="false">
+        <div :class="`flex flex-col justify-center items-center w-full`">
+            <div v-if="level !== 0" :class="`flex flex-row w-full h-10`">
                 <div :class="connectionUpwardsLeftClass"/>
                 <div :class="connectionUpwardsCenterClass"/>
                 <div :class="connectionUpwardsRightClass"/>
             </div>
 
-            <OrganizationNode 
-                :ref="`node-${levelInfo.id}`"
-                :employeeInfo="levelInfo" 
-                :level="level"  
-                :index="index" 
-                @click="collapse = !collapse" 
-                class="cursor-pointer"
-            />
+            <div :class="`px-4`">
+                <OrganizationNode 
+                    :ref="`node-${levelInfo.id}`"
+                    :employeeInfo="levelInfo" 
+                    :level="level"  
+                    :index="index" 
+                    @click="collapse = !collapse" 
+                    class="cursor-pointer"
+                />
+            </div>
         </div>
 
         <Transition name="fade">
-            <div v-if="!collapse && subordinates.length" class="flex flex-col justify-between items-center">
+            <div v-if="!collapse && subordinates.length" :class="`flex flex-col justify-start items-center`">
                 <div class="flex w-full h-10">
                     <div :class="'w-1/2'"/>
                     <div :class="'w-0 border-l border-neutral-800'"/>
                     <div :class="'w-1/2'"/>
                 </div>
 
-                <section class="tree w-max flex justify-around items-start">
+                <section :class="`tree flex flex-row justify-center items-start`">
                         <OrganizationTree 
                             v-for="(subTree, subTreeIndex) in subordinates" 
                             :key="subTreeIndex" 
