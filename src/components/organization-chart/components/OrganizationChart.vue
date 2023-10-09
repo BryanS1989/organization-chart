@@ -114,7 +114,7 @@ export default {
     >
         <section 
             ref="org-chart" 
-            :class="`absolute w-full h-full flex justify-around items-center p-4`" 
+            :class="`absolute w-max h-max flex justify-around items-center p-4`" 
             :style="chartStyle"
         >
             <OrganizationTree :levelInfo="chartInfo"/>
