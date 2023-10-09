@@ -101,8 +101,8 @@ export default {
         </div>
 
         <Transition name="fade">
-            <div v-if="!collapse" class="flex flex-col justify-between items-center">
-                <div v-if="subordinates.length" class="flex w-full h-10">
+            <div v-if="!collapse && subordinates.length" class="flex flex-col justify-between items-center">
+                <div class="flex w-full h-10">
                     <div :class="'w-1/2'"/>
                     <div :class="'w-0 border-l border-neutral-800'"/>
                     <div :class="'w-1/2'"/>
