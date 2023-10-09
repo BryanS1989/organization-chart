@@ -41,9 +41,12 @@ export default {
             return this.index === 0;
         },
         lastChild() {
-            return this.index === this.numberOfChildren;
+            return this.index === this.numberOfChildren - 1;
         },
-        connectionUpwardsLeftClasss() {
+        childrenMode () {
+            return this.numberOfChildren < 5 ? 'x-mode' : 'y-mode';
+        },
+        connectionUpwardsLeftClass() {
             if (this.firstChild) {
                 return 'w-full';
             } else if (this.lastChild) {
@@ -53,7 +56,7 @@ export default {
             return 'w-1/2 border-t border-neutral-800';
 
         },
-        connectionUpwardsCenterClasss () {
+        connectionUpwardsCenterClass () {
             if ( this.firstChild ) {
                 return 'w-10 border-l border-t border-neutral-800 rounded-tl-xl' ;
             } else if ( this.lastChild ) {
@@ -62,7 +65,7 @@ export default {
             
             return 'w-0 border-l border-neutral-800';
         },
-        connectionUpwardsRightClasss() {
+        connectionUpwardsRightClass() {
             if (this.firstChild) {
                 return 'w-full border-t border-neutral-800';
             } else if (this.lastChild) {
@@ -79,18 +82,22 @@ export default {
 </script>
 
 <template>
-    <section class="subtree w-max h-max flex flex-col justify-start items-center">
-        <div v-if="level !== 0" class="connectors flex w-full">
-            <div :class="`connection-upwards-left w-1/2 h-8 my-auto ${ connectionUpwardsLeftClasss }`"/>
-            <div :class="`connection-upwards-center h-8 ${ connectionUpwardsCenterClasss }`"/>
-            <div :class="`connection-upwards-right w-1/2 h-8 my-auto ${ connectionUpwardsRightClasss } `"/>
+    <section class="subtree w-max h-max flex flex-col justify-between items-center">
+        <div v-if="level !== 0" class="flex w-full h-10">
+            <div :class="connectionUpwardsLeftClass"/>
+            <div :class="connectionUpwardsCenterClass"/>
+            <div :class="connectionUpwardsRightClass"/>
         </div>
 
         <OrganizationNode :employeeInfo="levelInfo" :level="level"  :index="index" @click="collapse = !collapse" class="cursor-pointer"/>
 
         <Transition name="fade">
-            <div v-if="!collapse" class="w-full flex flex-col justify-around items-center">
-                <div v-if="subordinates.length" class="connection-downwards w-0 h-8 border-l border-neutral-800" />
+            <div v-if="!collapse">
+                <div v-if="subordinates.length" class="flex w-full h-10">
+                    <div :class="'w-1/2'"/>
+                    <div :class="'w-0 border-l border-neutral-800'"/>
+                    <div :class="'w-1/2'"/>
+                </div>
 
                 <section class="tree w-full flex justify-around items-start">
                         <OrganizationTree 
@@ -99,7 +106,7 @@ export default {
                             :levelInfo="subTree" 
                             :level="nextLevel" 
                             :index="subTreeIndex"
-                            :number-of-children="subordinates.length - 1"
+                            :number-of-children="subordinates.length"
                         />
                 </section>
             </div>
