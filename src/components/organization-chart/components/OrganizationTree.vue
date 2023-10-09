@@ -89,7 +89,14 @@ export default {
             <div :class="connectionUpwardsRightClass"/>
         </div>
 
-        <OrganizationNode :employeeInfo="levelInfo" :level="level"  :index="index" @click="collapse = !collapse" class="cursor-pointer"/>
+        <OrganizationNode 
+            :ref="`node-${levelInfo.id}`"
+            :employeeInfo="levelInfo" 
+            :level="level"  
+            :index="index" 
+            @click="collapse = !collapse" 
+            class="cursor-pointer"
+        />
 
         <Transition name="fade">
             <div v-if="!collapse">
