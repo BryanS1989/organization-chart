@@ -39,18 +39,18 @@ export default {
             <p class="text-xs text-thin text-left" v-show="employeeInfo.position">{{ employeeInfo.position }}</p>
         </header>
 
-        <ul class="p-4">
+        <ul class="grow p-4 flex flex-col justify-start items-start">
             <li v-for="property in properties" :key="property">
                 <span class="font-semibold">{{ property }}: </span><span class="text-xs">{{ this.employeeInfo[property] }}</span>
             </li>
         </ul>
 
         <footer 
-            :class="`relative flex justify-center items-center ${subordinates ? 'cursor-pointer' : ''}`"
+            :class="`h-5 relative flex justify-center items-center ${subordinates ? 'cursor-pointer' : ''}`"
             @click="emitExpand"
         >
             <div v-if="subordinates" 
-                class="absolute z-10 bg-neutral-100 border border-blue-700 rounded-full w-8 h-8 flex justify-center items-center text-blue-700" 
+                class="absolute -bottom-4 z-10 bg-neutral-100 border border-blue-700 rounded-full w-8 h-8 flex justify-center items-center text-blue-700" 
             >
                     <font-awesome-icon v-if="!expanded" :icon="['fas', 'chevron-down']" />
                     <font-awesome-icon v-else :icon="['fas', 'chevron-up']" />
