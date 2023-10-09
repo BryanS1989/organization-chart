@@ -101,8 +101,7 @@ export default {
                     :employeeInfo="levelInfo" 
                     :level="level"  
                     :index="index" 
-                    @click="collapse = !collapse" 
-                    class="cursor-pointer"
+                    @expand="collapse = !collapse" 
                 />
             </div>
         </div>
