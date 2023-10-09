@@ -15,7 +15,11 @@ export default {
     data() {
         return {
             clicked: false,
-            scaleFactor: 0.1,
+            scale: {
+                factor: 0.5,
+                min: 0.5,
+                max: 4
+            },
             position: {
                 start: {
                     x:0,
@@ -44,7 +48,7 @@ export default {
         left() {
             return this.position.offset.left;
         },
-        scale() {
+        currentScale() {
             return this.position.scale;
         },
         cursorPos() {
@@ -54,7 +58,7 @@ export default {
             return {
                 top: `${this.top}px`,
                 left: `${this.left}px`,
-                transform: `scale(${this.scale}) translateX(${this.left}px) translateY(${this.top}px)`,
+                transform: `scale(${this.currentScale}) translateX(${this.left * 0.5}px) translateY(${this.top * 0.5}px)`,
                 transformOrigin: `${this.cursorPos.x}px ${this.cursorPos.y}px`
             }
         }
@@ -82,17 +86,17 @@ export default {
             const { wheelDeltaY, clientX, clientY } = wheelEvent;
 
             if (wheelDeltaY < 0) {
-                this.position.scale -= this.scaleFactor;
+                this.position.scale -= this.scale.factor;
             } else {
-                this.position.scale += this.scaleFactor;
+                this.position.scale += this.scale.factor;
             }
 
-            if ( this.position.scale >= 0.5 && this.position.scale <= 2 ) {
-                this.position.cursorPos = { x: clientX, y: clientY };
+            if ( this.position.scale >= this.scale.min && this.position.scale <= this.scale.max ) {
+                this.position.cursorPos = { x: Math.round(clientX / 100) * 100, y: Math.round(clientY / 100) *100 };
             }
 
-            this.position.scale = Math.max(0.5, this.position.scale);
-            this.position.scale = Math.min(2, this.position.scale);
+            this.position.scale = Math.max(this.scale.min, this.position.scale);
+            this.position.scale = Math.min(this.scale.max, this.position.scale);
         },
         centerChart(){
             this.position.offset.top = 0;
@@ -105,7 +109,7 @@ export default {
 
 <template>
     <article 
-        :class="`relative border border-neutral-300 rounded-xl overflow-hidden w-full h-full p-6 flex justify-around grow items-center bg-neutral-50 shadow-inner ${!clicked ? 'cursor-grab' : 'cursor-grabbing'}`" 
+        :class="`relative border border-neutral-300 rounded-xl overflow-hidden w-full h-full p-6 bg-neutral-50 shadow-inner flex justify-center items-center ${!clicked ? 'cursor-grab' : 'cursor-grabbing'}`" 
         @mousedown="startDrag" 
         @mousemove="dragChart"
         @mouseup="endDrag"
@@ -116,7 +120,7 @@ export default {
     >
         <section 
             ref="org-chart" 
-            :class="`absolute w-full h-max flex justify-around items-center p-4`" 
+            :class="`absolute w-full h-full flex justify-center items-center p-4`" 
             :style="chartStyle"
         >
             <OrganizationTree 
