@@ -19,9 +19,9 @@ export default {
             type: Number,
             default: 0,
         },
-        last: {
-            type: Boolean,
-            default: false
+        numberOfChildren: {
+            type: Number,
+            default: 0,
         }
     },
     data() {
@@ -41,7 +41,7 @@ export default {
             return this.index === 0;
         },
         lastChild() {
-            return this.last;
+            return this.index === this.numberOfChildren;
         },
         connectionUpwardsLeftClasss() {
             if (this.firstChild) {
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <template>
-    <section class="subtree w-full h-full flex flex-col justify-start items-center">
+    <section class="subtree w-max h-max flex flex-col justify-start items-center">
         <div v-if="level !== 0" class="connectors flex w-full">
             <div :class="`connection-upwards-left w-1/2 h-8 my-auto ${ connectionUpwardsLeftClasss }`"/>
             <div :class="`connection-upwards-center h-8 ${ connectionUpwardsCenterClasss }`"/>
@@ -98,7 +98,7 @@ export default {
                             :levelInfo="subTree" 
                             :level="nextLevel" 
                             :index="subTreeIndex"
-                            :last="subTreeIndex === (subordinates.length - 1)"
+                            :number-of-children="subordinates.length - 1"
                         />
                 </section>
             </div>
