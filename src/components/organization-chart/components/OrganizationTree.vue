@@ -83,30 +83,32 @@ export default {
 
 <template>
     <section class="subtree w-max h-max flex flex-col justify-between items-center">
-        <div v-if="level !== 0" class="flex w-full h-10">
-            <div :class="connectionUpwardsLeftClass"/>
-            <div :class="connectionUpwardsCenterClass"/>
-            <div :class="connectionUpwardsRightClass"/>
+        <div class="flex flex-col w-full justify-between items-center">
+            <div v-if="level !== 0" class="flex w-full h-10">
+                <div :class="connectionUpwardsLeftClass"/>
+                <div :class="connectionUpwardsCenterClass"/>
+                <div :class="connectionUpwardsRightClass"/>
+            </div>
+
+            <OrganizationNode 
+                :ref="`node-${levelInfo.id}`"
+                :employeeInfo="levelInfo" 
+                :level="level"  
+                :index="index" 
+                @click="collapse = !collapse" 
+                class="cursor-pointer"
+            />
         </div>
 
-        <OrganizationNode 
-            :ref="`node-${levelInfo.id}`"
-            :employeeInfo="levelInfo" 
-            :level="level"  
-            :index="index" 
-            @click="collapse = !collapse" 
-            class="cursor-pointer"
-        />
-
         <Transition name="fade">
-            <div v-if="!collapse">
+            <div v-if="!collapse" class="flex flex-col justify-between items-center">
                 <div v-if="subordinates.length" class="flex w-full h-10">
                     <div :class="'w-1/2'"/>
                     <div :class="'w-0 border-l border-neutral-800'"/>
                     <div :class="'w-1/2'"/>
                 </div>
 
-                <section class="tree w-full flex justify-around items-start">
+                <section class="tree w-max flex justify-around items-start">
                         <OrganizationTree 
                             v-for="(subTree, subTreeIndex) in subordinates" 
                             :key="subTreeIndex" 
