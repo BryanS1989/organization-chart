@@ -17,8 +17,8 @@ export default {
             clicked: false,
             scale: {
                 factor: 0.1,
-                min: 0.5,
-                max: 1
+                min: 0.1,
+                max: 3
             },
             position: {
                 start: {
