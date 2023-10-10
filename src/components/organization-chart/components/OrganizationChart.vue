@@ -84,19 +84,20 @@ export default {
         },
         zoomChart (wheelEvent) {
             const { wheelDeltaY, clientX, clientY } = wheelEvent;
+            let positionScaleAux = this.position.scale;
 
             if (wheelDeltaY < 0) {
-                this.position.scale -= this.scale.factor;
+                positionScaleAux -= this.scale.factor;
             } else {
-                this.position.scale += this.scale.factor;
+                positionScaleAux += this.scale.factor;
             }
 
-            if ( this.position.scale >= this.scale.min && this.position.scale <= this.scale.max ) {
+            if ( positionScaleAux >= this.scale.min && positionScaleAux <= this.scale.max ) {
                 this.position.cursorPos = { x: Math.round(clientX / 100) * 100, y: Math.round(clientY / 100) *100 };
             }
 
-            this.position.scale = Math.max(this.scale.min, this.position.scale);
-            this.position.scale = Math.min(this.scale.max, this.position.scale);
+            this.position.scale = Math.max(this.scale.min, positionScaleAux);
+            this.position.scale = Math.min(this.scale.max, positionScaleAux);
         },
         centerChart(){
             this.position.offset.top = 0;
