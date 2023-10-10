@@ -16,9 +16,9 @@ export default {
         return {
             clicked: false,
             scale: {
-                factor: 0.5,
+                factor: 0.1,
                 min: 0.5,
-                max: 4
+                max: 1
             },
             position: {
                 start: {
@@ -94,10 +94,9 @@ export default {
 
             if ( positionScaleAux >= this.scale.min && positionScaleAux <= this.scale.max ) {
                 this.position.cursorPos = { x: Math.round(clientX / 100) * 100, y: Math.round(clientY / 100) *100 };
+                this.position.scale = Number(Math.max(this.scale.min, positionScaleAux).toFixed(1));
+                this.position.scale = Number(Math.min(this.scale.max, positionScaleAux).toFixed(1));
             }
-
-            this.position.scale = Math.max(this.scale.min, positionScaleAux);
-            this.position.scale = Math.min(this.scale.max, positionScaleAux);
         },
         centerChart(){
             this.position.offset.top = 0;
