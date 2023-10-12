@@ -87,7 +87,7 @@ export default {
 </script>
 
 <template>
-    <section :class="`flex-1 subtree flex flex-col justify-start items-center`" draggable="false">
+    <section :class="`flex-1 subtree flex flex-col justify-start items-center`">
         <div :class="`flex flex-col justify-center items-center w-full`">
             <div v-if="level !== 0" :class="`flex flex-row w-full h-10`">
                 <div :class="connectionUpwardsLeftClass"/>
