@@ -174,7 +174,8 @@ export default {
             @touchstart="startDrag" 
             @touchmove="dragChart"
             @touchend="endDrag" -->
-            <div v-if="showDebugPoints" class="absolute rounded-full w-4 h-4 border-2 border-blue-600 bg-blue-600" :style="{ left: `${cursorPosition.x}px`, top: `${cursorPosition.y}px` }"></div>
+        <div v-if="showDebugPoints" class="absolute rounded-full w-4 h-4 border-2 border-blue-600 bg-blue-600" :style="{ left: `${cursorPosition.x}px`, top: `${cursorPosition.y}px` }"></div>
+        
         <section 
             ref="chart" 
             :class="`absolute w-full h-full flex justify-center items-center p-4 ${showDebugPoints ? 'border border-red-600' : ''}`" 
