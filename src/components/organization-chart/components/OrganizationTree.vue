@@ -7,7 +7,7 @@ export default {
         OrganizationNode
     },
     props: {
-        levelInfo: {
+        subTreeInfo: {
             type: Object,
             default: () => ({})
         },
@@ -22,6 +22,10 @@ export default {
         numberOfChildren: {
             type: Number,
             default: 0,
+        },
+        childrenProperty: {
+            type: String,
+            default: ''
         }
     },
     data() {
@@ -35,7 +39,7 @@ export default {
             return this.localLevel + 1;
         },
         subordinates(){
-            return this.levelInfo.employees ?? [];
+            return this.subTreeInfo[this.childrenProperty] ?? [];
         },
         firstChild() {
             return this.index === 0;
@@ -97,10 +101,11 @@ export default {
 
             <div :class="`px-4`">
                 <OrganizationNode 
-                    :ref="`node-${levelInfo.id}`"
-                    :employeeInfo="levelInfo" 
+                    :ref="`node-${subTreeInfo.id}`"
+                    :node-info="subTreeInfo" 
                     :level="level"  
-                    :index="index" 
+                    :index="index"
+                    :has-children="subordinates.length !== 0"
                     @expand="collapse = !collapse" 
                 />
             </div>
@@ -118,10 +123,11 @@ export default {
                         <OrganizationTree 
                             v-for="(subTree, subTreeIndex) in subordinates" 
                             :key="subTreeIndex" 
-                            :levelInfo="subTree" 
+                            :sub-tree-info="subTree" 
                             :level="nextLevel" 
                             :index="subTreeIndex"
                             :number-of-children="subordinates.length"
+                            :children-property="childrenProperty"
                         />
                 </section>
             </div>
