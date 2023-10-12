@@ -26,6 +26,10 @@ export default {
         childrenProperty: {
             type: String,
             default: ''
+        },
+        querySelector: {
+            type: Object,
+            default: () => ({})
         }
     },
     data() {
@@ -106,6 +110,7 @@ export default {
                     :level="level"  
                     :index="index"
                     :has-children="subordinates.length !== 0"
+                    :query-selector="querySelector"
                     @expand="collapse = !collapse" 
                 />
             </div>
@@ -128,6 +133,7 @@ export default {
                             :index="subTreeIndex"
                             :number-of-children="subordinates.length"
                             :children-property="childrenProperty"
+                            :query-selector="querySelector"
                         />
                 </section>
             </div>
