@@ -53,7 +53,8 @@ export default {
             },
             showDebugPoints : false,
             query: {
-                name: ''
+                name: '',
+                email: ''
             }
         }
     },
@@ -217,6 +218,13 @@ export default {
                 type="text"
                 class="rounded-2xl px-4 border border-blue-700 outline-none text-blue-800 h-10"
                 placeholder="Find by name"
+            />
+
+            <input 
+                v-model="query.email"
+                type="text"
+                class="rounded-2xl px-4 border border-blue-700 outline-none text-blue-800 h-10"
+                placeholder="Find by email"
             />
 
         </div>
