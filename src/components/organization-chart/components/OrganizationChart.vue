@@ -11,6 +11,10 @@ export default {
             type: Object,
             default: () => ({})
         },
+        childrenProperty: {
+            type: String,
+            default: ''
+        }
     },
     data() {
         return {
@@ -92,6 +96,9 @@ export default {
                 transformOrigin: `${this.transformOrigin.x}px ${this.transformOrigin.y}px`
             }
         },
+        subordinates(){
+            return this.chartInfo[this.childrenProperty];
+        }
     },
     methods: {
         startDrag(event) {
@@ -185,9 +192,10 @@ export default {
             <div v-if="showDebugPoints" class="absolute rounded-full w-4 h-4 border-2 border-green-600 bg-green-600" :style="{ left: `${transformOrigin.x}px`, top: `${transformOrigin.y}px` }"></div>
 
             <OrganizationTree 
-                :levelInfo="chartInfo"
+                :sub-tree-info="chartInfo"
                 :index="0"
-                :number-of-children="chartInfo.employees.length"
+                :number-of-children="subordinates.length"
+                :children-property="childrenProperty"
             />
         </section>
 
