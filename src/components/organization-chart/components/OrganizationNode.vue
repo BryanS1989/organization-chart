@@ -39,13 +39,16 @@ export default {
         querySelector: {
             deep: true,
             handler() {
+                let propertyWithInfo = [];
+                let propertyFound = [];
                 Object.keys(this.querySelector).map((property) => {
+                    let selected = false;
                     switch (typeof this.querySelector[property]) {
                         case 'string':
                             if (this.querySelector[property].trim().length) {
-                                this.isHighlighted = this.nodeInfo[property]?.toLowerCase().includes(this.querySelector[property].toLowerCase()) ?? false;
-                            } else {
-                                this.isHighlighted = false;
+                                propertyWithInfo.push(property);
+                                selected = this.nodeInfo[property]?.toLowerCase().includes(this.querySelector[property].toLowerCase()) ?? false;
+                                propertyFound.push(selected);
                             }
                             break;
                     
@@ -53,6 +56,8 @@ export default {
                             break;
                     }
                 });
+
+                this.isHighlighted = propertyWithInfo.length && propertyFound.length === propertyWithInfo.length && !propertyFound.some((selected) => selected === false) ;
             }
         }
     },
