@@ -52,6 +52,9 @@ export default {
                 }
             },
             showDebugPoints : false,
+            query: {
+                name: ''
+            }
         }
     },
     computed:{
@@ -196,17 +199,25 @@ export default {
                 :index="0"
                 :number-of-children="subordinates.length"
                 :children-property="childrenProperty"
+                :query-selector="query"
             />
         </section>
 
-        <div class="absolute top-4 right-4">
+        <div class="absolute top-4 right-4 flex flex-col gap-3">
             <button 
                 type="button" 
-                class="text-neutral-100 bg-blue-700 hover:bg-blue-900 font-medium rounded-2xl text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+                class="text-neutral-100 bg-blue-700 font-medium rounded-2xl text-sm px-5 py-2.5"
                 @click="centerChart"
             >
                 CENTER
             </button>
+
+            <input 
+                v-model="query.name"
+                type="text"
+                class="rounded-2xl px-4 border border-blue-700 outline-none text-blue-800 h-10"
+                placeholder="Find by name"
+            />
 
         </div>
 
