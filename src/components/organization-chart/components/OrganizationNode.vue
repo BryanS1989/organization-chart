@@ -24,8 +24,8 @@ export default {
     },
     computed: {
         properties() {
-            return Object.keys(this.nodeInfo).filter(
-                (key) => !Array.isArray(this.nodeInfo[key]) && !['name', 'position'].includes(key)
+            return Object.keys(this.nodeInfo).sort().filter(
+                (key) => !Array.isArray(this.nodeInfo[key]) && typeof this.nodeInfo[key] !== 'object' && !['name', 'position'].includes(key)
             );
         },
         highlightedSectionClass() {
