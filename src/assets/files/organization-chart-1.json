@@ -1,321 +1,307 @@
 {
-    "name": "My Company",
-    "description": "A fictitious company",
-    "founded": "2000",
-    "location": "Example City",
-    "employees": [
-        {
-            "name": "John Smith",
-            "position": "CEO",
-            "salary": 85000,
-            "employees": [
-                {
-                    "name": "Laura Garcia",
-                    "position": "Director of Sales",
-                    "department": "Ventas",
-                    "employees": [
-                        {
-                            "name": "Isabella Young",
-                            "position": "Sales Manager",
-                            "department": "Ventas",
-                            "email": "i.young@email.com"
-                        },
-                        {
-                            "name": "Alice Johnson",
-                            "position": "Analista de Ventas",
-                            "department": "Ventas",
-                            "email": "alice.johnson@email.com",
-                            "phone": "555-123-4567",
-                            "address": "789 Elm Street, Ciudad Imaginaria",
-                            "birthdate": "1992-07-12",
-                            "hire_date": "2019-04-03",
-                            "salary": 65000,
-                            "work_location": "Oficina Regional",
-                            "supervisor": "Laura Garcia",
-                            "skills": [
-                                "Ventas Consultivas",
-                                "Gestión de Clientes"
-                            ],
-                            "certifications": [
-                                "Certificado de Ventas Avanzadas"
-                            ],
-                            "work_history": [
-                                {
-                                    "employer": "Empresa XYZ",
-                                    "position": "Ejecutivo de Cuentas",
-                                    "start_date": "2015-09-15",
-                                    "end_date": "2019-03-28"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "name": "Elena Martinez",
-                    "position": "Director of Development",
-                    "department": "Producto",
-                    "employees": [
-                        {
-                            "name": "Luis Fernandez",
-                            "position": "Senior Developer",
-                            "department": "Producto",
-                            "email": "l.fernandez@email.com",
-                            "employees": [
-                                {
-                                    "name": "Ana Sanchez",
-                                    "position": "Junior Developer",
-                                    "department": "Producto",
-                                    "email": "a.sanchez@email.com",
-                                    "work_location": "Oficina Regional",
-                                    "birthdate": "1982-07-12"
-                                },
-                                {
-                                    "name": "Michael Johnson",
-                                    "position": "Junior Developer",
-                                    "department": "Producto",
-                                    "email": "m.johnson@email.com"
-                                },
-                                {
-                                    "name": "Ross Geller",
-                                    "position": "Junior Developer",
-                                    "department": "Producto",
-                                    "email": "r.geller@email.com",
-                                    "birthdate": "1972-05-01"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Sophia Williams",
-                            "position": "Senior Developer",
-                            "department": "Producto",
-                            "email": "s.williams@email.com",
-                            "employees": [
-                                {
-                                    "name": "Olivia Taylor",
-                                    "position": "Junior Developer",
-                                    "department": "Producto",
-                                    "email": "o.taylor@email.com"
-                                },
-                                {
-                                    "name": "Daniel Moore",
-                                    "position": "Junior Developer",
-                                    "department": "Producto",
-                                    "email": "d.moore@email.com"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "David Anderson",
-                            "position": "Junior Developer",
-                            "department": "Producto",
-                            "email": "d.anderson@email.com"
-                        },
-                        {
-                            "name": "Ava Turner",
-                            "position": "Lead QA Engineer",
-                            "department": "Producto",
-                            "email": "a.turner@email.com",
-                            "employees": [
-                                {
-                                    "name": "Ethan Baker",
-                                    "position": "Junior QA Engineer",
-                                    "department": "Producto",
-                                    "email": "e.baker@email.com"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Mia White",
-                            "position": "Senior Software Engineer",
-                            "department": "Producto",
-                            "email": "m.white@email.com"
-                        },
-                        {
-                            "name": "William Smith",
-                            "position": "Software Engineer",
-                            "department": "Producto",
-                            "email": "w.smith@email.com"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Jane Doe",
-            "position": "COO",
-            "email": "j.doe@email.com",
-            "employees": [
-                {
-                    "name": "Maria Perez",
-                    "position": "Director of HR",
-                    "department": "Recursos Humanos"
-                },
-                {
-                    "name": "David Rodriguez",
-                    "position": "Hiring Manager",
-                    "hire_date": "2017-06-01",
-                    "department": "Recursos Humanos",
-                    "email": "d.rodriguez@email.com"
-                },
-                {
-                    "name": "Ella Walker",
-                    "position": "HR Specialist",
-                    "hire_date": "2017-06-01",
-                    "department": "Recursos Humanos",
-                    "email": "e.walker@email.com"
-                },
-                {
-                    "name": "Sophie Turner",
-                    "position": "HR Coordinator",
-                    "department": "Recursos Humanos",
-                    "email": "s.turner@email.com"
-                },
-                {
-                    "name": "Sophie Turner",
-                    "position": "Analista de Recursos Humanos",
-                    "department": "Recursos Humanos",
-                    "email": "sophie.turner@email.com",
-                    "phone": "777-123-4567",
-                    "address": "123 Maple Lane, Ciudad de Imaginación",
-                    "birthdate": "1990-11-28",
-                    "hire_date": "2017-06-01",
-                    "salary": 60000,
-                    "work_location": "Oficina Central",
-                    "supervisor": "Maria Perez",
-                    "emergency_contact": {
-                        "name": "Oliver Turner",
-                        "phone": "111-222-3333"
-                    },
-                    "employee_ID": "RH456",
-                    "benefits": {
-                        "health_insurance": "Plan B",
-                        "retirement_plan": "Plan de Jubilación 401(k)"
-                    }
-                }
-            ]
-        },
-        {
-            "name": "Alice Brown",
-            "position": "CFO",
-            "department": "Finanzas",
-            "email": "a.brown@email.com",
-            "employees": [
-                {
-                    "name": "Robert Wilson",
-                    "position": "Financial Analyst",
-                    "department": "Finanzas",
-                    "email": "r.wilson@email.com"
-                },
-                {
-                    "name": "Emily Davis",
-                    "position": "Accountant",
-                    "department": "Finanzas",
-                    "email": "e.davis@email.com"
-                },
-                {
-                    "name": "Liam Clark",
-                    "position": "Financial Analyst",
-                    "department": "Finanzas",
-                    "email": "l.clark@email.com",
-                    "employees": [
-                        {
-                            "name": "Oliver Mitchell",
-                            "position": "Junior Financial Analyst",
-                            "department": "Finanzas",
-                            "email": "o.mitchell@email.com"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "William Turner",
-            "position": "CTO",
-            "department": "I+D",
-            "email": "w.turner@email.com",
-            "employees": [
-                {
-                    "name": "Sophia Lewis",
-                    "department": "I+D",
-                    "position": "Lead Engineer",
-                    "email": "s.lewis@email.com"
-                },
-                {
-                    "name": "Daniel White",
-                    "department": "I+D",
-                    "position": "Software Engineer",
-                    "email": "d.white@email.com"
-                },
-                {
-                    "name": "Olivia Harris",
-                    "department": "I+D",
-                    "position": "Software Engineer",
-                    "email": "o.harris@email.com"
-                },
-                {
-                    "name": "Alexander Green",
-                    "department": "I+D",
-                    "position": "QA Engineer",
-                    "email": "a.green@email.com"
-                },
-                {
-                    "name": "David Miller",
-                    "position": "Ingeniero de Software",
-                    "department": "Desarrollo",
-                    "email": "david.miller@email.com",
-                    "phone": "888-987-6543",
-                    "address": "456 Oak Avenue, Ciudad Ficticia",
-                    "birthdate": "1987-03-20",
-                    "hire_date": "2016-08-15",
-                    "salary": 80000,
-                    "work_location": "Oficina Principal",
-                    "supervisor": "Elena Martinez",
-                    "skills": [
-                        "Desarrollo Web",
-                        "Python",
-                        "Base de Datos"
-                    ],
-                    "certifications": [
-                        "Certificado Python Developer"
-                    ],
-                    "projects": [
-                        "Proyecto X",
-                        "Proyecto Y"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Susan Clark",
-            "position": "CMO",
-            "department": "Marketing",
-            "email": "s.clark@email.com",
-            "employees": [
-                {
-                    "name": "Jennifer King",
-                    "position": "Marketing Manager",
-                    "department": "Marketing",
-                    "email": "j.king@email.com"
-                },
-                {
-                    "name": "Matthew Scott",
-                    "position": "Marketing Specialist",
-                    "department": "Marketing",
-                    "email": "m.scott@email.com"
-                },
-                {
-                    "name": "Harper Davis",
-                    "position": "Marketing Coordinator",
-                    "department": "Marketing",
-                    "email": "h.davis@email.com"
-                },
-                {
-                    "name": "Benjamin Harris",
-                    "position": "Social Media Specialist",
-                    "department": "Marketing",
-                    "email": "b.harris@email.com"
-                }
-            ]
-        }
-    ]
+	"name": "My Company",
+	"description": "A fictitious company",
+	"founded": "2000",
+	"location": "Example City",
+	"employees": [
+		{
+			"name": "John Smith",
+			"position": "CEO",
+			"salary": 85000,
+			"employees": [
+				{
+					"name": "Laura Garcia",
+					"position": "Director of Sales",
+					"department": "Ventas",
+					"employees": [
+						{
+							"name": "Isabella Young",
+							"position": "Sales Manager",
+							"department": "Ventas",
+							"email": "i.young@email.com"
+						},
+						{
+							"name": "Alice Johnson",
+							"position": "Analista de Ventas",
+							"department": "Ventas",
+							"email": "alice.johnson@email.com",
+							"phone": "555-123-4567",
+							"address": "789 Elm Street, Ciudad Imaginaria",
+							"birthdate": "1992-07-12",
+							"hire_date": "2019-04-03",
+							"salary": 65000,
+							"work_location": "Oficina Regional",
+							"supervisor": "Laura Garcia",
+							"skills": ["Ventas Consultivas", "Gestión de Clientes"],
+							"certifications": ["Certificado de Ventas Avanzadas"],
+							"work_history": [
+								{
+									"employer": "Empresa XYZ",
+									"position": "Ejecutivo de Cuentas",
+									"start_date": "2015-09-15",
+									"end_date": "2019-03-28"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Elena Martinez",
+					"position": "Director of Development",
+					"department": "Producto",
+					"employees": [
+						{
+							"name": "Luis Fernandez",
+							"position": "Senior Developer",
+							"department": "Producto",
+							"email": "l.fernandez@email.com",
+							"employees": [
+								{
+									"name": "Ana Sanchez",
+									"position": "Junior Developer",
+									"department": "Producto",
+									"email": "a.sanchez@email.com",
+									"work_location": "Oficina Regional",
+									"birthdate": "1982-07-12"
+								},
+								{
+									"name": "Michael Johnson",
+									"position": "Junior Developer",
+									"department": "Producto",
+									"email": "m.johnson@email.com"
+								},
+								{
+									"name": "Ross Geller",
+									"position": "Junior Developer",
+									"department": "Producto",
+									"email": "r.geller@email.com",
+									"birthdate": "1972-05-01"
+								}
+							]
+						},
+						{
+							"name": "Sophia Williams",
+							"position": "Senior Developer",
+							"department": "Producto",
+							"email": "s.williams@email.com",
+							"employees": [
+								{
+									"name": "Olivia Taylor",
+									"position": "Junior Developer",
+									"department": "Producto",
+									"email": "o.taylor@email.com"
+								},
+								{
+									"name": "Daniel Moore",
+									"position": "Junior Developer",
+									"department": "Producto",
+									"email": "d.moore@email.com"
+								}
+							]
+						},
+						{
+							"name": "David Anderson",
+							"position": "Junior Developer",
+							"department": "Producto",
+							"email": "d.anderson@email.com"
+						},
+						{
+							"name": "Ava Turner",
+							"position": "Lead QA Engineer",
+							"department": "Producto",
+							"email": "a.turner@email.com",
+							"employees": [
+								{
+									"name": "Ethan Baker",
+									"position": "Junior QA Engineer",
+									"department": "Producto",
+									"email": "e.baker@email.com"
+								}
+							]
+						},
+						{
+							"name": "Mia White",
+							"position": "Senior Software Engineer",
+							"department": "Producto",
+							"email": "m.white@email.com"
+						},
+						{
+							"name": "William Smith",
+							"position": "Software Engineer",
+							"department": "Producto",
+							"email": "w.smith@email.com"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Jane Doe",
+			"position": "COO",
+			"email": "j.doe@email.com",
+			"employees": [
+				{
+					"name": "Maria Perez",
+					"position": "Director of HR",
+					"department": "Recursos Humanos"
+				},
+				{
+					"name": "David Rodriguez",
+					"position": "Hiring Manager",
+					"hire_date": "2017-06-01",
+					"department": "Recursos Humanos",
+					"email": "d.rodriguez@email.com"
+				},
+				{
+					"name": "Ella Walker",
+					"position": "HR Specialist",
+					"hire_date": "2017-06-01",
+					"department": "Recursos Humanos",
+					"email": "e.walker@email.com"
+				},
+				{
+					"name": "Sophie Turner",
+					"position": "HR Coordinator",
+					"department": "Recursos Humanos",
+					"email": "s.turner@email.com"
+				},
+				{
+					"name": "Sophie Turner",
+					"position": "Analista de Recursos Humanos",
+					"department": "Recursos Humanos",
+					"email": "sophie.turner@email.com",
+					"phone": "777-123-4567",
+					"address": "123 Maple Lane, Ciudad de Imaginación",
+					"birthdate": "1990-11-28",
+					"hire_date": "2017-06-01",
+					"salary": 60000,
+					"work_location": "Oficina Central",
+					"supervisor": "Maria Perez",
+					"emergency_contact": {
+						"name": "Oliver Turner",
+						"phone": "111-222-3333"
+					},
+					"employee_ID": "RH456",
+					"benefits": {
+						"health_insurance": "Plan B",
+						"retirement_plan": "Plan de Jubilación 401(k)"
+					}
+				}
+			]
+		},
+		{
+			"name": "Alice Brown",
+			"position": "CFO",
+			"department": "Finanzas",
+			"email": "a.brown@email.com",
+			"employees": [
+				{
+					"name": "Robert Wilson",
+					"position": "Financial Analyst",
+					"department": "Finanzas",
+					"email": "r.wilson@email.com"
+				},
+				{
+					"name": "Emily Davis",
+					"position": "Accountant",
+					"department": "Finanzas",
+					"email": "e.davis@email.com"
+				},
+				{
+					"name": "Liam Clark",
+					"position": "Financial Analyst",
+					"department": "Finanzas",
+					"email": "l.clark@email.com",
+					"employees": [
+						{
+							"name": "Oliver Mitchell",
+							"position": "Junior Financial Analyst",
+							"department": "Finanzas",
+							"email": "o.mitchell@email.com"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "William Turner",
+			"position": "CTO",
+			"department": "I+D",
+			"email": "w.turner@email.com",
+			"employees": [
+				{
+					"name": "Sophia Lewis",
+					"department": "I+D",
+					"position": "Lead Engineer",
+					"email": "s.lewis@email.com"
+				},
+				{
+					"name": "Daniel White",
+					"department": "I+D",
+					"position": "Software Engineer",
+					"email": "d.white@email.com"
+				},
+				{
+					"name": "Olivia Harris",
+					"department": "I+D",
+					"position": "Software Engineer",
+					"email": "o.harris@email.com"
+				},
+				{
+					"name": "Alexander Green",
+					"department": "I+D",
+					"position": "QA Engineer",
+					"email": "a.green@email.com"
+				},
+				{
+					"name": "David Miller",
+					"position": "Ingeniero de Software",
+					"department": "Desarrollo",
+					"email": "david.miller@email.com",
+					"phone": "888-987-6543",
+					"address": "456 Oak Avenue, Ciudad Ficticia",
+					"birthdate": "1987-03-20",
+					"hire_date": "2016-08-15",
+					"salary": 80000,
+					"work_location": "Oficina Principal",
+					"supervisor": "Elena Martinez",
+					"skills": ["Desarrollo Web", "Python", "Base de Datos"],
+					"certifications": ["Certificado Python Developer"],
+					"projects": ["Proyecto X", "Proyecto Y"]
+				}
+			]
+		},
+		{
+			"name": "Susan Clark",
+			"position": "CMO",
+			"department": "Marketing",
+			"email": "s.clark@email.com",
+			"employees": [
+				{
+					"name": "Jennifer King",
+					"position": "Marketing Manager",
+					"department": "Marketing",
+					"email": "j.king@email.com"
+				},
+				{
+					"name": "Matthew Scott",
+					"position": "Marketing Specialist",
+					"department": "Marketing",
+					"email": "m.scott@email.com"
+				},
+				{
+					"name": "Harper Davis",
+					"position": "Marketing Coordinator",
+					"department": "Marketing",
+					"email": "h.davis@email.com"
+				},
+				{
+					"name": "Benjamin Harris",
+					"position": "Social Media Specialist",
+					"department": "Marketing",
+					"email": "b.harris@email.com"
+				}
+			]
+		}
+	]
 }
