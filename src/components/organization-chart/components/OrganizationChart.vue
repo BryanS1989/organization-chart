@@ -175,7 +175,7 @@ export default {
     <article 
         :class="`relative border border-neutral-300 rounded-xl overflow-hidden w-full h-full bg-neutral-50 shadow-inner flex justify-center items-center ${!clicked ? 'cursor-grab' : 'cursor-grabbing'}`"
         ref="container"
-        @mousedown="startDrag" 
+        @mousedown.prevent="startDrag" 
         @mousemove="dragChart"
         @mouseup="endDrag"
         @mouseleave="endDrag"
@@ -204,10 +204,10 @@ export default {
             />
         </section>
 
-        <div class="absolute top-4 right-4 flex flex-col gap-3">
+        <div class="absolute top-2 right-2 flex flex-col gap-3 px-3 py-4 shadow-md rounded-3xl bg-neutral-100" @mousedown.stop>
             <button 
                 type="button" 
-                class="text-neutral-100 bg-blue-700 font-medium rounded-2xl text-sm px-5 py-2.5"
+                class="text-neutral-100 bg-blue-700 font-medium rounded-2xl text-sm px-5 py-2.5 select-none"
                 @click="centerChart"
             >
                 CENTER
