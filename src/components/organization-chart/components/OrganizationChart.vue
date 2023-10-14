@@ -199,6 +199,7 @@ export default {
 
 			const side = this.containerRect.right - this.containerRect.left;
 
+			// FIXME: TransformOrigin does not work, still different than cursor position
 			this.chartParameters.zoom.currentTransformOrigin = {
 				x: Number(((x - this.containerRect.left) / side).toFixed(2)) * 100,
 				y: Number(((y - this.containerRect.top) / side).toFixed(2)) * 100,
