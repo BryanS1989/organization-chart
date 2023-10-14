@@ -54,6 +54,9 @@ export default {
         lastChild() {
             return this.index === this.numberOfChildren - 1;
         },
+        isUniqueChild(){
+            return this.numberOfChildren ===  1;
+        },
         parentColumnMode() {
             return this.numberOfChildren >= 5;
         },
@@ -61,7 +64,7 @@ export default {
             return this.subordinates.length >= 5;
         },
         connectionUpwardsLeftClass() {
-            if (this.firstChild) {
+            if (this.firstChild || this.isUniqueChild) {
                 return 'w-full';
             } else if (this.lastChild) {
                 return 'w-full border-t border-neutral-800';
@@ -70,6 +73,10 @@ export default {
             return 'w-1/2 border-t border-neutral-800';
         },
         connectionUpwardsCenterClass() {
+            if (this.isUniqueChild) {
+                return 'w-0 border-l border-neutral-800';
+            }
+
             if (this.firstChild) {
                 return 'w-10 border-l border-t border-neutral-800 rounded-tl-xl';
             } else if (this.lastChild) {
@@ -79,10 +86,10 @@ export default {
             return 'w-0 border-l border-neutral-800';
         },
         connectionUpwardsRightClass() {
-            if (this.firstChild) {
+            if (this.isUniqueChild || this.lastChild) {
+                return 'w-full'
+            } else if (this.firstChild) {
                 return 'w-full border-t border-neutral-800';
-            } else if (this.lastChild) {
-                return 'w-full';
             }
 
             return 'w-1/2 border-t border-neutral-800';
