@@ -119,32 +119,34 @@ export default {
 			}`"
 			@click="emitExpand"
 		>
-			<div
-				v-if="hasChildren"
-				class="absolute -bottom-4 z-10 bg-neutral-100 border border-blue-700 rounded-full flex justify-center items-center text-blue-700"
-			>
-				<p
-					v-if="!expanded"
-					class="w-fit h-8 px-3 flex justify-around items-center gap-1"
-					@mouseover="showTotalChildren = true"
-					@mouseleave="showTotalChildren = false"
-				>
-					<font-awesome-icon :icon="['fas', 'chevron-down']" />
-					<Transition name="fade">
-						<span
-							v-if="showTotalChildren"
-							class="whitespace-nowrap font-semibold"
-							>{{ `+${nodeInfo[childrenProperty].length}` }}</span
-						>
-					</Transition>
-				</p>
-				<p
-					v-else
-					class="w-8 h-8 px-3 flex justify-around items-center gap-1"
-				>
-					<font-awesome-icon :icon="['fas', 'chevron-up']" />
-				</p>
-			</div>
+            <Transition name="fade">
+                <div
+                    v-if="hasChildren"
+                    class="absolute -bottom-4 z-10 bg-neutral-100 border border-blue-700 rounded-full flex justify-center items-center text-blue-700"
+                >
+                    <p
+                        v-if="!expanded"
+                        :class="`${!showTotalChildren ? 'w-8' : 'w-fit' } h-8 px-3 flex justify-around items-center gap-1`"
+                        @mouseover="showTotalChildren = true"
+                        @mouseleave="showTotalChildren = false"
+                    >
+                        <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                        
+                        <span
+                            v-if="showTotalChildren"
+                            class="whitespace-nowrap font-semibold"
+                            >{{ `+${nodeInfo[childrenProperty].length}` }}</span
+                        >
+                        
+                    </p>
+                    <p
+                        v-else
+                        class="w-8 h-8 px-3 flex justify-around items-center gap-1"
+                    >
+                        <font-awesome-icon :icon="['fas', 'chevron-up']" />
+                    </p>
+                </div>
+            </Transition>
 		</footer>
 	</section>
 </template>
