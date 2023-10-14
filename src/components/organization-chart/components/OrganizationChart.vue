@@ -153,12 +153,12 @@ export default {
             const x = event.clientX - this.offset.left * 2 - this.containerRef.offsetLeft;
             const y = event.clientY - this.offset.top * 2 - this.containerRef.offsetTop;
 
-            const scaledX = Number(
-                ((this.cursorPosition.x - this.transformOrigin.x) / this.currentScale).toFixed(2)
-            );
-            const scaledY = Number(
-                ((this.cursorPosition.y - this.transformOrigin.y) / this.currentScale).toFixed(2)
-            );
+            // const scaledX = Number(
+            //     ((this.cursorPosition.x - this.transformOrigin.x) / this.currentScale).toFixed(2)
+            // );
+            // const scaledY = Number(
+            //     ((this.cursorPosition.y - this.transformOrigin.y) / this.currentScale).toFixed(2)
+            // );
 
             // this.chartParameters.transformOrigin = { x, y };
             this.chartParameters.currentTransformOrigin = { x, y };
