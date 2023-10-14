@@ -195,7 +195,7 @@ export default {
 		},
 		getTransformOrigin(event) {
 			const x = event.clientX - this.offset.left * 2 - this.containerRef.offsetLeft;
-			const y = event.clientY - this.offset.top * 2 - this.containerRef.offsetLeft;
+			const y = event.clientY - this.offset.top * 2 - this.containerRef.offsetTop;
 
 			const side = this.containerRect.right - this.containerRect.left;
 
