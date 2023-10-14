@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
+/* Import custom AppLink */
+import AppLink from "@/components/base/links/AppLink.vue";
 const app = createApp(App)
 
 app.use(createPinia())
@@ -25,5 +27,8 @@ library.add(faChevronDown, faChevronUp)
 
 /* add font awesome icon component */
 app.component('font-awesome-icon', FontAwesomeIcon)
+
+/* Add AppLink globally */
+app.component('AppLink', AppLink);
 
 app.mount('#app')
