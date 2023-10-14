@@ -15,7 +15,12 @@ module.exports = {
 	],
 	plugins: ['prettier'],
 	rules: {
-		'prettier/prettier': ['error'],
+		'prettier/prettier': [
+			'error',
+			{
+				endOfLine: 'auto',
+			},
+		],
 		'vue/require-default-prop': 0,
 		'vue/html-indent': [
 			'error',
