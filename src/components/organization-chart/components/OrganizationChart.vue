@@ -179,11 +179,12 @@ export default {
 			positionScaleAux += wheelDeltaY > 0 ? this.scale.factor : -this.scale.factor;
 
 			// Set scale limits
-			positionScaleAux = Math.max(this.scale.min, positionScaleAux);
-			positionScaleAux = Math.min(this.scale.max, positionScaleAux);
+			positionScaleAux = Math.min(this.scale.max, Math.max(this.scale.min, positionScaleAux));
 
-			this.setCurrentTransformOrigin();
-			this.chartParameters.zoom.scale = Number(positionScaleAux.toFixed(1));
+			if (this.currentScale !== positionScaleAux) {
+				this.setCurrentTransformOrigin();
+				this.chartParameters.zoom.scale = Number(positionScaleAux.toFixed(1));
+			}
 		},
 		cursorCoordinates(event) {
 			const x = event.clientX - this.containerRect.left;
