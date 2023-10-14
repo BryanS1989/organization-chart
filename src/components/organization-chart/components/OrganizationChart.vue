@@ -254,7 +254,7 @@ export default {
 			></div>
 
 			<OrganizationTree
-				v-if="!showDebugPoints || true"
+				v-if="!showDebugPoints"
 				:sub-tree-info="chartInfo"
 				:index="0"
 				:number-of-children="subordinates.length"
