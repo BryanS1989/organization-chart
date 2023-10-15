@@ -2,6 +2,7 @@
 export default {
 	name: 'OrganizationNode',
 	components: {},
+	emits: ['expand'],
 	props: {
 		nodeInfo: {
 			type: Object,
