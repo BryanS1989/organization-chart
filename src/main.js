@@ -26,7 +26,7 @@ app.use(router);
 library.add(faChevronDown, faChevronUp);
 
 /* add font awesome icon component */
-app.component('font-awesome-icon', FontAwesomeIcon);
+app.component('FontAwesomeIcon', FontAwesomeIcon);
 
 /* Add AppLink globally */
 app.component('AppLink', AppLink);
