@@ -133,7 +133,7 @@ export default {
 						@mouseover="showTotalChildren = true"
 						@mouseleave="showTotalChildren = false"
 					>
-						<font-awesome-icon :icon="['fas', 'chevron-down']" />
+						<fontAwesomeIcon :icon="['fas', 'chevron-down']" />
 
 						<span
 							v-if="showTotalChildren"
@@ -146,7 +146,7 @@ export default {
 						v-else
 						class="w-8 h-8 px-3 flex justify-around items-center gap-1"
 					>
-						<font-awesome-icon :icon="['fas', 'chevron-up']" />
+						<fontAwesomeIcon :icon="['fas', 'chevron-up']" />
 					</p>
 				</div>
 			</Transition>
