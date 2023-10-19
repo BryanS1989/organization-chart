@@ -19,6 +19,8 @@ export default {
 	data() {
 		return {
 			clicked: false,
+			intervalId: null,
+			intervalTime: 3000,
 			scale: {
 				factor: 0.1,
 				min: 0.1,
@@ -29,7 +31,7 @@ export default {
 				y: 0,
 			},
 			chartParameters: {
-				move: {
+				drag: {
 					start: {
 						x: 0,
 						y: 0,
@@ -45,17 +47,21 @@ export default {
 				},
 				zoom: {
 					scale: 1,
-					transformOrigin: {
+					start: {
 						x: 0,
 						y: 0,
 					},
-					currentTransformOrigin: {
+					end: {
+						x: 0,
+						y: 0,
+					},
+					offset: {
 						x: 0,
 						y: 0,
 					},
 				},
 			},
-			showDebugPoints: false,
+			showDebugPoints: true,
 			query: {
 				name: '',
 				email: '',
@@ -66,72 +72,77 @@ export default {
 		containerRef() {
 			return this.$refs.container;
 		},
-		containerRect() {
-			return this.containerRef.getBoundingClientRect();
-		},
-		chartRef() {
-			return this.$refs.chart;
+		chartDragRef() {
+			return this.$refs.chartDrag;
 		},
 		initialPosition() {
-			return this.chartParameters.move.start;
+			return this.chartParameters.drag.start;
 		},
 		finalPosition() {
-			return this.chartParameters.move.end;
+			return this.chartParameters.drag.end;
 		},
-		offset() {
-			return this.chartParameters.move.offset;
+		offsetDrag() {
+			return this.chartParameters.drag.offset;
 		},
 		currentScale() {
 			return this.chartParameters.zoom.scale;
 		},
-		currentTransformOrigin() {
-			return this.chartParameters.zoom.currentTransformOrigin;
+		initialZoom() {
+			return this.chartParameters.zoom.start;
 		},
-		transformOrigin() {
-			return this.chartParameters.zoom.transformOrigin;
+		finalZoom() {
+			return this.chartParameters.zoom.end;
+		},
+		offsetZoom() {
+			return this.chartParameters.zoom.offset;
 		},
 		cursorPosition() {
 			return this.cursorPos;
 		},
 		styleDrag() {
 			return {
-				top: `${this.offset.top}px`,
-				left: `${this.offset.left}px`,
-				translate: `${this.offset.left}px ${this.offset.top}px`,
+				top: `${this.offsetDrag.top}px`,
+				left: `${this.offsetDrag.left}px`,
+				translate: `${this.offsetDrag.left}px ${this.offsetDrag.top}px`,
 			};
 		},
 		styleZoom() {
 			return {
-				transform: `scale(${this.currentScale})`,
-			};
-		},
-		styleTransformOrigin() {
-			return {
-				transformOrigin: `${this.transformOrigin.x}% ${this.transformOrigin.y}%`,
-			};
-		},
-		styleOffset() {
-			return {
-				left: `${this.currentTransformOrigin.x}%`,
-				top: `${this.currentTransformOrigin.y}%`,
+				transform: `translate(${this.offsetZoom.x}px, ${this.offsetZoom.y}px) scale(${this.currentScale})`,
+				transformOrigin: '50% 50%',
 			};
 		},
 		subordinates() {
 			return this.chartInfo[this.childrenProperty];
 		},
 	},
+	unmounted() {
+		clearInterval(this.intervalId);
+	},
 	methods: {
 		setInitialPosition(x, y) {
-			this.chartParameters.move.start.x = x;
-			this.chartParameters.move.start.y = y;
+			this.chartParameters.drag.start.x = x;
+			this.chartParameters.drag.start.y = y;
 		},
 		setFinalPosition(x, y) {
-			this.chartParameters.move.end.x = x;
-			this.chartParameters.move.end.y = y;
+			this.chartParameters.drag.end.x = x;
+			this.chartParameters.drag.end.y = y;
 		},
-		setOffset(left, top) {
-			this.chartParameters.move.offset.left = left;
-			this.chartParameters.move.offset.top = top;
+		setOffsetDrag(left, top) {
+			this.chartParameters.drag.offset.left = left;
+			this.chartParameters.drag.offset.top = top;
+		},
+		setInitialZoom(x, y) {
+			this.chartParameters.zoom.start.x = x;
+			this.chartParameters.zoom.start.y = y;
+		},
+		setFinalZoom(x, y) {
+			this.chartParameters.zoom.end.x = x;
+			this.chartParameters.zoom.end.y = y;
+		},
+		setOffsetZoom(x, y) {
+			this.chartParameters.zoom.offset.x = x;
+			this.chartParameters.zoom.offset.y = y;
 		},
 		startDrag(event) {
 			const { clientX, clientY } = event.type === 'touchstart' ? event.touches[0] : event;
@@ -144,9 +155,15 @@ export default {
 		},
 		dragChart(event) {
 			const { clientX, clientY } = event.type === 'touchmove' ? event.touches[0] : event;
-			const { offsetTop, offsetLeft } = this.chartRef;
+			const { offsetTop, offsetLeft } = this.chartDragRef;
 
 			this.cursorCoordinates(event);
+
+			if (!this.intervalId) {
+				this.intervalId = setInterval(() => {
+					this.setInitialZoom(this.cursorPosition.x, this.cursorPosition.y);
+				}, this.intervalTime);
+			}
 
 			// Check if user still holding click
 			if (!this.clicked) return;
@@ -159,7 +176,7 @@ export default {
 
 			this.setInitialPosition(clientX, clientY);
 
-			this.setOffset(offsetLeft - this.finalPosition.x, offsetTop - this.finalPosition.y);
+			this.setOffsetDrag(offsetLeft - this.finalPosition.x, offsetTop - this.finalPosition.y);
 		},
 		endDrag() {
 			// User ends drag
@@ -169,50 +186,40 @@ export default {
 			this.setInitialPosition(0, 0);
 		},
 		zoomChart(event) {
-			const { wheelDeltaY } = event;
+			const { wheelDeltaY, clientX, clientY } = event;
+			let scaleAux = this.currentScale;
 
 			event.preventDefault();
 
-			let positionScaleAux = this.currentScale;
-
 			// Check zoom in or zoom out
-			positionScaleAux += wheelDeltaY > 0 ? this.scale.factor : -this.scale.factor;
+			scaleAux += wheelDeltaY > 0 ? this.scale.factor : -this.scale.factor;
 
 			// Set scale limits
-			positionScaleAux = Math.min(this.scale.max, Math.max(this.scale.min, positionScaleAux));
+			scaleAux = Math.min(this.scale.max, Math.max(this.scale.min, scaleAux));
 
-			if (this.currentScale !== positionScaleAux) {
-				this.setCurrentTransformOrigin();
-				this.chartParameters.zoom.scale = Number(positionScaleAux.toFixed(1));
+			if (this.currentScale !== scaleAux) {
+				this.manageZoom(clientX, clientY);
+
+				this.chartParameters.zoom.scale = Number(scaleAux.toFixed(1));
 			}
 		},
+		manageZoom(clientX, clientY) {
+			if (this.initialZoom.x - clientX > 50 || this.initialZoom.y - clientY > 50) {
+				this.setFinalZoom(this.initialZoom.x - clientX, this.initialZoom.y - clientY);
+			}
+
+			// this.setInitialPosition(clientX, clientY);
+
+			this.setOffsetZoom(this.finalZoom.x, this.finalZoom.y);
+		},
 		cursorCoordinates(event) {
-			const x = event.clientX - this.containerRect.left;
-			const y = event.clientY - this.containerRect.top;
+			const x = event.clientX - this.containerRef.getBoundingClientRect().left;
+			const y = event.clientY - this.containerRef.getBoundingClientRect().top;
 
 			this.cursorPos = { x, y };
-
-			this.getTransformOrigin(event);
-		},
-		getTransformOrigin(event) {
-			const x = event.clientX - this.offset.left * 2 - this.containerRef.offsetLeft;
-			const y = event.clientY - this.offset.top * 2 - this.containerRef.offsetTop;
-
-			const side = this.containerRect.right - this.containerRect.left;
-
-			// FIXME: TransformOrigin does not work, still different than cursor position
-			this.chartParameters.zoom.currentTransformOrigin = {
-				x: Number(((x - this.containerRect.left) / side).toFixed(2)) * 100,
-				y: Number(((y - this.containerRect.top) / side).toFixed(2)) * 100,
-			};
-		},
-		setCurrentTransformOrigin() {
-			this.chartParameters.zoom.transformOrigin = {
-				...this.currentTransformOrigin,
-			};
 		},
 		centerChart() {
-			this.setOffset(0, 0);
+			this.setOffsetDrag(0, 0);
 			this.chartParameters.zoom.scale = 1;
 		},
 	},
@@ -237,32 +244,34 @@ export default {
             @touchend="endDrag" -->
 		<div
 			v-if="showDebugPoints"
-			class="absolute rounded-full w-4 h-4 border-2 border-blue-600 bg-blue-600"
+			class="absolute z-10 rounded-full w-4 h-4 border-2 border-blue-600 bg-blue-600"
 			:style="{ left: `${cursorPosition.x}px`, top: `${cursorPosition.y}px` }"
 		></div>
 
-		<section
-			ref="chart"
-			:class="`absolute w-full h-full flex justify-center items-center p-4 ${
+		<div
+			ref="chartZoom"
+			:class="`w-full h-full flex justify-center items-center p-4 ${
 				showDebugPoints ? 'border border-red-600' : ''
 			}`"
-			:style="[styleDrag, styleZoom, styleTransformOrigin]"
+			:style="[styleZoom]"
 		>
 			<div
-				v-if="showDebugPoints"
-				class="absolute rounded-full w-4 h-4 border-2 border-red-600 bg-red-600"
-				:style="[styleOffset]"
-			></div>
-
-			<OrganizationTree
-				v-if="!showDebugPoints"
-				:sub-tree-info="chartInfo"
-				:index="0"
-				:number-of-children="subordinates.length"
-				:children-property="childrenProperty"
-				:query-selector="query"
-			/>
-		</section>
+				ref="chartDrag"
+				:class="`absolute origin-center	 w-full h-full flex justify-center items-center p-4 ${
+					showDebugPoints ? 'border border-green-600' : ''
+				}`"
+				:style="[styleDrag]"
+			>
+				<OrganizationTree
+					v-if="!showDebugPoints || true"
+					:sub-tree-info="chartInfo"
+					:index="0"
+					:number-of-children="subordinates.length"
+					:children-property="childrenProperty"
+					:query-selector="query"
+				/>
+			</div>
+		</div>
 
 		<aside
 			class="absolute top-2 right-2 flex flex-col gap-3 px-3 py-4 shadow-md rounded-3xl bg-neutral-100"
@@ -301,11 +310,8 @@ export default {
 			<p class="text-md font-bold px-1 rounded border border-blue-600">
 				{{ `x: ${cursorPosition.x}px y: ${cursorPosition.y}px` }}
 			</p>
-			<p class="text-md font-bold px-1 rounded border border-red-600">
-				{{ `x: ${currentTransformOrigin.x}px y: ${currentTransformOrigin.y}px` }}
-			</p>
 			<p class="text-md font-bold px-1 rounded border border-black-600">
-				{{ `left: ${offset.left}px  top: ${offset.top}px` }}
+				{{ `left: ${offsetDrag.left}px  top: ${offsetDrag.top}px` }}
 			</p>
 		</div>
 	</article>
